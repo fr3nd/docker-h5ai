@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
       libpng12-dev \
+      patch \
       unzip \
       zip \
       && rm -rf /usr/share/doc/* && \
@@ -18,10 +19,14 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-install exif
 
 ENV H5AI_VERSION 0.28.1
+ENV PREFIX=""
 
 RUN curl -L https://release.larsjung.de/h5ai/h5ai-${H5AI_VERSION}.zip > /usr/src/h5ai-${H5AI_VERSION}.zip && \
     unzip /usr/src/h5ai-${H5AI_VERSION}.zip && \
     rm -f /usr/src/h5ai-${H5AI_VERSION}.zip
+COPY class-setup.patch /usr/src/class-setup.patch
+# patch to add prefix tobe used in reverse proxy
+RUN patch -p1 /var/www/html/_h5ai/private/php/core/class-setup.php /usr/src/class-setup.patch
 COPY h5ai.conf /etc/apache2/conf-enabled/h5ai.conf
 COPY options.json /var/www/html/_h5ai/private/conf/options.json
 RUN chown www-data:www-data /var/www/html/_h5ai/private/cache

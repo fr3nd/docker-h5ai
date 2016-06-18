@@ -1,0 +1,11 @@
+--- ./_h5ai/private/php/core/class-setup.php.orig	2016-06-18 22:31:47.917903530 +0700
++++ ./_h5ai/private/php/core/class-setup.php	2016-06-18 22:33:14.067615394 +0700
+@@ -102,7 +102,7 @@
+             $script_name = preg_replace('#^.*?//#', '/', $script_name);
+         }
+ 
+-        $this->set('H5AI_HREF', Util::normalize_path(dirname(dirname($script_name)), true));
++        $this->set('H5AI_HREF', getenv('PREFIX') . Util::normalize_path(dirname(dirname($script_name)), true));
+         $this->set('H5AI_PATH', Util::normalize_path(dirname(dirname(dirname(dirname(__FILE__)))), false));
+ 
+         $this->set('ROOT_HREF', Util::normalize_path(dirname($this->get('H5AI_HREF')), true));
