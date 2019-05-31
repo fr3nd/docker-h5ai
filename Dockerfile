@@ -1,12 +1,12 @@
 FROM php:7.0-apache
-MAINTAINER Carles Amigó, fr3nd@fr3nd.net
+MAINTAINER No 0ne
 
 RUN apt-get update && apt-get install -y \
       imagemagick \
       libav-tools \
       libfreetype6-dev \
       libjpeg62-turbo-dev \
-      libpng12-dev \
+      libpng-dev \
       patch \
       unzip \
       zip \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
       docker-php-ext-install gd && \
       docker-php-ext-install exif
 
-ENV H5AI_VERSION 0.28.1
+ENV H5AI_VERSION 0.29.2
 ENV PREFIX=""
 
 RUN curl -L https://release.larsjung.de/h5ai/h5ai-${H5AI_VERSION}.zip > /usr/src/h5ai-${H5AI_VERSION}.zip && \

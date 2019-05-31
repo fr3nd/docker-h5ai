@@ -17,5 +17,5 @@ Just mount the directories you want to show and make sure they are accessible:
 docker run \
    -p 8080:80 \
    -v /home/user/:/var/www/html/user_home:ro \
-   fr3nd/h5ai
+   tarek369/h5ai
 ```
