@@ -1,5 +1,5 @@
 FROM php:7.0-apache
-MAINTAINER Carles Amigó, fr3nd@fr3nd.net
+MAINTAINER No 0ne
 
 RUN apt-get update && apt-get install -y \
       imagemagick \
